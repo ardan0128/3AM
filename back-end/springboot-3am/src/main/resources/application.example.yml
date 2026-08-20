@@ -1,0 +1,16 @@
+server:
+  port:
+
+spring:
+  datasource:
+    driver-class-name:
+    url:
+    username:
+    password:
+  jpa:
+    database:
+    database-platform:
+    open-in-view:
+    hibernate:
+      ddl-auto:
+    defer-datasource-initialization:
