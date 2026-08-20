@@ -30,6 +30,6 @@ public class Team {
     private LocalDateTime updatedAt;
 
     @ManyToOne
-    @JoinColumn(name="member_id", nullable = false)
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 }
