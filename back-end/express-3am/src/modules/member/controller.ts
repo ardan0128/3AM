@@ -1,5 +1,6 @@
 import { type NextFunction, type Request, type Response } from 'express';
 import * as service from './service.ts';
+import type { CreateMemberAllDto, CreateMemberOneDto } from './dto.ts';
 
 export async function createOne(
   req: Request,
@@ -7,8 +8,23 @@ export async function createOne(
   next: NextFunction,
 ) {
   try {
-    const { name } = req.body;
-    const newMember = await service.createOne(name);
+    const body = req.body as CreateMemberOneDto;
+    const newMember = await service.createOne(body);
+
+    res.status(201).json(newMember);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function createAll(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const body = req.body as CreateMemberAllDto;
+    const newMember = await service.createAll(body);
 
     res.status(201).json(newMember);
   } catch (error) {
