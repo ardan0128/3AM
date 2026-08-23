@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from 'express';
 import * as service from './service.ts';
-import type { MemberParam, UpdateMemberRequest } from './type.ts';
+import type { MemberParam, TeamParam, UpdateMemberRequest } from './type.ts';
 
 export async function createOne(
   req: Request,
@@ -44,9 +44,15 @@ export async function updateOne(
   }
 }
 
-export function getAll(req: Request, res: Response, next: NextFunction) {
+export async function getMembersByTeamId(
+  req: Request<TeamParam>,
+  res: Response,
+  next: NextFunction,
+) {
   try {
-    res.status(200).json({ message: 'Get all members' });
+    const membersInfo = await service.getMembersByTeamId(req.params.teamId);
+
+    res.status(200).json(membersInfo);
   } catch (error) {
     next(error);
   }

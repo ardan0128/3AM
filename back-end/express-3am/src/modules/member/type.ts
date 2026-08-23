@@ -25,3 +25,7 @@ export interface UpdateMembers {
   members: string[];
   teamId: string;
 }
+
+export interface TeamParam {
+  teamId: string;
+}

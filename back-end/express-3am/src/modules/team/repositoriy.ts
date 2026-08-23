@@ -33,4 +33,6 @@ export async function getTeamMembersById(id: string) {
       member: true,
     },
   });
+
+  return teamInfo;
 }

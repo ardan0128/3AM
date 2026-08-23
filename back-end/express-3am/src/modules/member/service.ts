@@ -28,4 +28,8 @@ export async function updateOne(
   return member;
 }
 
-export async function updateAll(teamId: string, updateMember) {}
+export async function getMembersByTeamId(teamId: string) {
+  const membersInfo = await repository.getMembersByTeamId(teamId);
+
+  return membersInfo;
+}

@@ -1,4 +1,4 @@
-import { eq, inArray } from 'drizzle-orm';
+import { asc, eq, inArray } from 'drizzle-orm';
 import { db } from '../../db/index.ts';
 import { member } from '../../db/schema/member.ts';
 import type { Member, UpdateMember, UpdateMembers } from './type.ts';
@@ -33,4 +33,14 @@ export async function updateAll(updateMembers: UpdateMembers) {
     .returning();
 
   return updateMember;
+}
+
+export async function getMembersByTeamId(teamId: string) {
+  const membersInfo = await db
+    .select()
+    .from(member)
+    .where(eq(member.teamId, teamId))
+    .orderBy(asc(member.name));
+
+  return membersInfo;
 }
