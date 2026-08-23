@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
+import { relations } from './schema/team.relation.ts';
 
 const pool = new Pool({
   host: process.env.DATABASE_HOST,
@@ -13,4 +14,5 @@ const pool = new Pool({
 
 export const db = drizzle({
   client: pool,
+  relations,
 });

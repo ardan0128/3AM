@@ -1,15 +1,31 @@
-import type { CreateMemberAllDto, CreateMemberOneDto } from './dto.ts';
+import type {
+  CreateMember,
+  CreateMembers,
+  UpdateMember,
+  UpdateMemberRequest,
+} from './type.ts';
 import * as repository from './repository.ts';
 
-export async function createOne(createMemberDto: CreateMemberOneDto) {
-  const member = createMemberDto.member;
-  const newMember = await repository.createOne(member);
+export async function createOne(createMember: CreateMember) {
+  const newMember = await repository.createOne(createMember.member);
 
   return newMember;
 }
 
-export async function createAll(createMemberAllDto: CreateMemberAllDto) {
-  const newMember = await repository.createAll(createMemberAllDto.member);
+export async function createAll(createMembers: CreateMembers) {
+  const newMember = await repository.createAll(createMembers.members);
 
   return newMember;
 }
+
+export async function updateOne(
+  id: string,
+  updateMemberRequest: UpdateMemberRequest,
+) {
+  const updateMember: UpdateMember = { id, ...updateMemberRequest };
+  const member = await repository.updateOne(updateMember);
+
+  return member;
+}
+
+export async function updateAll(teamId: string, updateMember) {}

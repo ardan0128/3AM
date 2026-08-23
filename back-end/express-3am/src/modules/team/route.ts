@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { createOne } from './controller.ts';
+import { createTeam, getTeamById } from './controller.ts';
 
 const router = Router();
 
-router.post('/', createOne);
+router.post('/create', createTeam);
+router.get('/get/:id', getTeamById);
 
 export default router;
