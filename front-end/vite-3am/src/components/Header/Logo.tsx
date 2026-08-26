@@ -1,8 +1,12 @@
+import { Link } from 'react-router';
+
 export default function Logo() {
   return (
     <>
       <div>
-        <a href="/">Home</a>
+        <Link className="text-white" to={'/'}>
+          Home
+        </Link>
       </div>
     </>
   );
