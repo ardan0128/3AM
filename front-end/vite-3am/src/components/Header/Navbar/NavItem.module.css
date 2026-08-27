@@ -1,0 +1,29 @@
+@reference '#App.css';
+
+.navItem {
+  @apply relative text-gray-400;
+}
+
+.navItem::after {
+  @apply absolute right-0 -bottom-2 h-0.5 w-0 bg-gray-200 transition-all duration-300 content-[''];
+}
+
+.navItem:hover {
+  @apply text-gray-200;
+}
+
+.navItem:hover::after {
+  @apply left-0 w-full;
+}
+
+.active {
+  @apply text-white;
+}
+
+.active:hover {
+  @apply text-white;
+}
+
+.active::after {
+  @apply left-0 w-full bg-white;
+}
