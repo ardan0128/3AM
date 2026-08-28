@@ -1,6 +1,12 @@
 export interface Member {
   name: string;
   teamId?: string;
+  mainColor?: string;
+  subColor?: string;
+  chzzkId?: string;
+  youtubeHandle?: string;
+  naverCafe?: string;
+  xId?: string;
 }
 
 export interface CreateMember {
@@ -16,14 +22,18 @@ export interface MemberParam {
 }
 
 export interface UpdateMemberRequest {
+  id: string;
   teamId: string;
+  mainColor?: string;
+  subColor?: string;
+  chzzkId?: string;
+  youtubeHandle?: string;
+  naverCafe?: string;
+  xId?: string;
 }
 
-export interface UpdateMember extends MemberParam, UpdateMemberRequest {}
-
-export interface UpdateMembers {
-  members: string[];
-  teamId: string;
+export interface UpdateMembersRequest {
+  members: UpdateMemberRequest[];
 }
 
 export interface TeamParam {

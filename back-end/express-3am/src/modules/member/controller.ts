@@ -1,6 +1,11 @@
 import { type NextFunction, type Request, type Response } from 'express';
 import * as service from './service.ts';
-import type { MemberParam, TeamParam, UpdateMemberRequest } from './type.ts';
+import type {
+  MemberParam,
+  TeamParam,
+  UpdateMemberRequest,
+  UpdateMembersRequest,
+} from './type.ts';
 
 export async function createOne(
   req: Request,
@@ -31,7 +36,7 @@ export async function createAll(
 }
 
 export async function updateOne(
-  req: Request<MemberParam, any, UpdateMemberRequest>,
+  req: Request<MemberParam, unknown, UpdateMemberRequest>,
   res: Response,
   next: NextFunction,
 ) {
@@ -39,6 +44,20 @@ export async function updateOne(
     const updatedMember = await service.updateOne(req.params.id, req.body);
 
     res.status(200).json(updatedMember);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function updateAll(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const updateMembers = await service.updateAll(req.body);
+
+    res.status(200).json(updateMembers);
   } catch (error) {
     next(error);
   }

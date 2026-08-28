@@ -1,8 +1,8 @@
 import type {
   CreateMember,
   CreateMembers,
-  UpdateMember,
   UpdateMemberRequest,
+  UpdateMembersRequest,
 } from './type.ts';
 import * as repository from './repository.ts';
 
@@ -22,7 +22,7 @@ export async function updateOne(
   id: string,
   updateMemberRequest: UpdateMemberRequest,
 ) {
-  const updateMember: UpdateMember = { id, ...updateMemberRequest };
+  const updateMember: UpdateMemberRequest = { ...updateMemberRequest, id };
   const member = await repository.updateOne(updateMember);
 
   return member;
@@ -30,6 +30,14 @@ export async function updateOne(
 
 export async function getMembersByTeamId(teamId: string) {
   const membersInfo = await repository.getMembersByTeamId(teamId);
+
+  return membersInfo;
+}
+
+export async function updateAll(updateMembersRequest: UpdateMembersRequest) {
+  const membersInfo = await Promise.all(
+    updateMembersRequest.members.map((member) => repository.updateOne(member)),
+  );
 
   return membersInfo;
 }
