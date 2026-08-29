@@ -34,3 +34,9 @@ export async function getMembersByTeamId(teamId: string) {
 
   return membersInfo;
 }
+
+export async function getMembersAll() {
+  const membersInfo = await db.select().from(member).orderBy(asc(member.name));
+
+  return membersInfo;
+}

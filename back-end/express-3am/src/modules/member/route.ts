@@ -1,16 +1,23 @@
 import { Router } from 'express';
-import { createAll, createOne, updateAll, updateOne } from './controller.ts';
-import { getMembersByTeamId } from './service.ts';
+import {
+  createAll,
+  createOne,
+  getMembersAll,
+  updateAll,
+  updateOne,
+} from './controller.ts';
+import { getMembersByTeamId } from './controller.ts';
 
 const router = Router();
 
-router.post('/create-one', createOne);
-router.post('/create-all', createAll);
+router.post('/member', createOne);
+router.post('/members', createAll);
 
-router.put('/update-all', updateAll);
+router.put('/members', updateAll);
 
-router.patch('/update-one/:id', updateOne);
+router.patch('/member/:id', updateOne);
 
-router.get('/get/members/:teamId', getMembersByTeamId);
+router.get('/members/:teamId', getMembersByTeamId);
+router.get('/members', getMembersAll);
 
 export default router;

@@ -76,3 +76,17 @@ export async function getMembersByTeamId(
     next(error);
   }
 }
+
+export async function getMembersAll(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const membersInfo = await service.getMembersAll();
+
+    res.status(200).json(membersInfo);
+  } catch (error) {
+    next(error);
+  }
+}

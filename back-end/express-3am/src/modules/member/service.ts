@@ -41,3 +41,9 @@ export async function updateAll(updateMembersRequest: UpdateMembersRequest) {
 
   return membersInfo;
 }
+
+export async function getMembersAll() {
+  const membersInfo = await repository.getMembersAll();
+
+  return membersInfo;
+}
