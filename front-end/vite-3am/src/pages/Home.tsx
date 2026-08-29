@@ -1,4 +1,5 @@
 import getMembersAll from '@/api/member/api';
+import MemberCard from '@/components/Home/MemberCard';
 import { useQuery } from '@tanstack/react-query';
 
 export default function Home() {
@@ -9,15 +10,11 @@ export default function Home() {
 
   return (
     <>
-      <h1>page: Home</h1>
-      <a>Test</a>
-      {members?.map((member) => {
-        return (
-          <div className="text-white" key={member.id}>
-            {member.name}
-          </div>
-        );
-      })}
+      <div className="flex h-full gap-4 p-4">
+        {members?.map((member) => {
+          return <MemberCard {...member} />;
+        })}
+      </div>
     </>
   );
 }
