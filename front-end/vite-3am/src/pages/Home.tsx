@@ -8,11 +8,18 @@ export default function Home() {
     queryFn: getMembersAll,
   });
 
+  const DROP_DURATION = 500;
+  const CARD_DELAY = 100;
+
+  const flipDelay: number = (members ?? []).length * CARD_DELAY + DROP_DURATION;
+
   return (
     <>
-      <div className="flex h-full gap-4 p-4">
-        {members?.map((member) => {
-          return <MemberCard {...member} />;
+      <div className="flex h-full">
+        {members?.map((member, index) => {
+          return (
+            <MemberCard index={index} flipDelay={flipDelay} member={member} />
+          );
         })}
       </div>
     </>
