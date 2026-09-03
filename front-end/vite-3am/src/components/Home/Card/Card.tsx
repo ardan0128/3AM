@@ -22,7 +22,7 @@ export default function Card({
         onAnimationEnd={onDropEnd}
       >
         <div
-          className={`${styles.cardInner} ${isFlipped ? styles.flipped : ''}`}
+          className={`aspect-7/16 ${styles.cardInner} ${isFlipped ? styles.flipped : ''}`}
         >
           <div className={styles.cardFront}>
             <CardFront member={member} />
