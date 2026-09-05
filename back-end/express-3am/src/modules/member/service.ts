@@ -36,7 +36,9 @@ export async function getMembersByTeamId(teamId: string) {
 
 export async function updateAll(updateMembersRequest: UpdateMembersRequest) {
   const membersInfo = await Promise.all(
-    updateMembersRequest.members.map((member) => repository.updateOne(member)),
+    updateMembersRequest.members.map((member) =>
+      repository.updateOne({ ...member }),
+    ),
   );
 
   return membersInfo;

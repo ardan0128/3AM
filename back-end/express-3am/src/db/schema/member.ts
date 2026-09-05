@@ -13,6 +13,7 @@ export const member = pgTable('members', {
   youtubeHandle: varchar('youtube_handle', { length: 255 }),
   naverCafe: varchar('naver_cafe', { length: 255 }),
   xId: varchar('x_id', { length: 255 }),
+  profileImageUrl: varchar('profile_image_url', { length: 255 }),
 
   teamId: uuid('team_id').references(() => team.id),
   createdAt: timestamp('created_at', { withTimezone: true })

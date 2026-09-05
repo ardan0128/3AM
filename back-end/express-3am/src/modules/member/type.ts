@@ -7,6 +7,7 @@ export interface Member {
   youtubeHandle?: string;
   naverCafe?: string;
   xId?: string;
+  profileImageUrl?: string;
 }
 
 export interface CreateMember {
@@ -23,13 +24,14 @@ export interface MemberParam {
 
 export interface UpdateMemberRequest {
   id: string;
-  teamId: string;
+  teamId?: string;
   mainColor?: string;
   subColor?: string;
   chzzkId?: string;
   youtubeHandle?: string;
   naverCafe?: string;
   xId?: string;
+  profileImageUrl?: string;
 }
 
 export interface UpdateMembersRequest {

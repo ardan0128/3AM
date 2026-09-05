@@ -1,7 +1,8 @@
-import { asc, eq, inArray } from 'drizzle-orm';
+import { asc, DrizzleQueryError, eq, inArray } from 'drizzle-orm';
 import { db } from '../../db/index.ts';
 import { member } from '../../db/schema/member.ts';
 import type { Member, UpdateMemberRequest } from './type.ts';
+import { DatabaseError } from 'pg';
 
 export async function createOne(memberOne: Member) {
   const newMember = await db.insert(member).values(memberOne).returning();
@@ -15,11 +16,12 @@ export async function createAll(members: Member[]) {
   return newMember;
 }
 
-export async function updateOne(updateMember: UpdateMemberRequest) {
+export async function updateOne(updateMemberRequest: UpdateMemberRequest) {
+  const { id, teamId, ...updateData } = updateMemberRequest;
   const updatedMember = await db
     .update(member)
-    .set({ ...updateMember })
-    .where(eq(member.id, updateMember.id))
+    .set(updateData)
+    .where(eq(member.id, id))
     .returning();
 
   return updatedMember[0];
