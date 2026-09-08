@@ -7,4 +7,5 @@ export interface MemberResponse {
   youtubeHandle?: string;
   naverCafe?: string;
   xId?: string;
+  profileImageUrl?: string;
 }

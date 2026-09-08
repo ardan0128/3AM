@@ -1,5 +1,5 @@
 import styles from './Card.module.css';
-import type { MemberPros } from '../types';
+import type { MemberProps } from '../types';
 import CardFront from './CardFront';
 import CardBack from './CardBack';
 
@@ -12,7 +12,7 @@ export default function Card({
   index: number;
   isFlipped: boolean;
   onDropEnd?: () => void;
-  member: MemberPros;
+  member: MemberProps;
 }) {
   return (
     <>

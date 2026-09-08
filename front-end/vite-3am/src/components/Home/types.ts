@@ -1,4 +1,4 @@
-export interface MemberPros {
+export interface MemberProps {
   id: string;
   name: string;
   mainColor?: string;
@@ -7,4 +7,5 @@ export interface MemberPros {
   youtubeHandle?: string;
   naverCafe?: string;
   xId?: string;
+  profileImageUrl?: string;
 }

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Card from './Card';
-import type { MemberPros } from '../types';
+import type { MemberProps } from '../types';
 
-export default function CardList({ members }: { members: MemberPros[] }) {
+export default function CardList({ members }: { members: MemberProps[] }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleLastCardDrop = () => {

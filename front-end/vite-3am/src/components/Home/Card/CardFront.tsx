@@ -1,6 +1,6 @@
-import type { MemberPros } from '../types';
+import type { MemberProps } from '../types';
 
-export default function CardFront({ member }: { member: MemberPros }) {
+export default function CardFront({ member }: { member: MemberProps }) {
   return (
     <>
       <div
@@ -9,10 +9,13 @@ export default function CardFront({ member }: { member: MemberPros }) {
         key={member.id}
       >
         <div className="p-2 text-center text-2xl font-bold">{member.name}</div>
-        <div className="shrink-0">
+        <div
+          className="shrink-0"
+          style={{ backgroundColor: `${member.mainColor}` }}
+        >
           <img
-            className="block w-full"
-            src="/images/profiles/molala.webp"
+            className="block aspect-square w-full object-cover"
+            src={member.profileImageUrl || '/images/profiles/molala.webp'}
             alt="TEST"
           />
         </div>
@@ -31,12 +34,20 @@ export default function CardFront({ member }: { member: MemberPros }) {
             </a>
           </div>
           <div className="flex flex-1 items-center">
-            <a href={member.chzzkId} target="_blank" rel="noopener noreferrer">
+            <a
+              href={`${import.meta.env.VITE_CAFE_URL}${member.naverCafe}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               cafe
             </a>
           </div>
           <div className="flex flex-1 items-center">
-            <a href={member.chzzkId} target="_blank" rel="noopener noreferrer">
+            <a
+              href={`${import.meta.env.VITE_YOUTUBE_URL}${member.youtubeHandle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               youtube
             </a>
           </div>
