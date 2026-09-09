@@ -1,10 +1,12 @@
 import { sql } from 'drizzle-orm';
 import { pgTable, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
+import { member } from './member.ts';
 
 export const memberTheme = pgTable('member_themes', {
   id: uuid('id')
     .default(sql`uuidv7()`)
-    .primaryKey(),
+    .primaryKey()
+    .references(() => member.id, { onDelete: 'cascade' }),
   mainColor: varchar('main_color', { length: 7 }),
 
   createdAt: timestamp('created_at', { withTimezone: true })

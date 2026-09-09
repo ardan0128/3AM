@@ -1,6 +1,8 @@
 import type {
   CreateMember,
   CreateMembers,
+  MemberTheme,
+  MemberThemeRequest,
   UpdateMemberRequest,
   UpdateMembersRequest,
 } from './type.ts';
@@ -48,4 +50,15 @@ export async function getMembersAll() {
   const membersInfo = await repository.getMembersAll();
 
   return membersInfo;
+}
+
+export async function createTheme(
+  id: string,
+  memberThemeRequest: MemberThemeRequest,
+) {
+  const memberTheme: MemberTheme = { ...memberThemeRequest, id };
+
+  const themeInfo = await repository.createTheme(memberTheme);
+
+  return themeInfo;
 }

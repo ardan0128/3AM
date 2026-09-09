@@ -1,7 +1,8 @@
 import { asc, DrizzleQueryError, eq, inArray } from 'drizzle-orm';
 import { db } from '../../db/index.ts';
 import { member } from '../../db/schema/member.ts';
-import type { Member, UpdateMemberRequest } from './type.ts';
+import { memberTheme } from '../../db/schema/member-theme.ts';
+import type { Member, MemberTheme, UpdateMemberRequest } from './type.ts';
 import { DatabaseError } from 'pg';
 
 export async function createOne(memberOne: Member) {
@@ -41,4 +42,14 @@ export async function getMembersAll() {
   const membersInfo = await db.select().from(member).orderBy(asc(member.name));
 
   return membersInfo;
+}
+
+export async function createTheme(theme: MemberTheme) {
+  const createdTheme = await db
+    .insert(memberTheme)
+    .values(theme)
+    .onConflictDoUpdate({ target: memberTheme.id, set: { ...theme } })
+    .returning();
+
+  return createdTheme[0];
 }

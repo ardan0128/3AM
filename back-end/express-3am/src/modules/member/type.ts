@@ -41,3 +41,9 @@ export interface UpdateMembersRequest {
 export interface TeamParam {
   teamId: string;
 }
+
+export interface MemberThemeRequest {
+  mainColor: string;
+}
+
+export interface MemberTheme extends MemberParam, MemberThemeRequest {}

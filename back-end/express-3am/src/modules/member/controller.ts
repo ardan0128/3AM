@@ -2,9 +2,9 @@ import { type NextFunction, type Request, type Response } from 'express';
 import * as service from './service.ts';
 import type {
   MemberParam,
+  MemberThemeRequest,
   TeamParam,
   UpdateMemberRequest,
-  UpdateMembersRequest,
 } from './type.ts';
 
 export async function createOne(
@@ -86,6 +86,20 @@ export async function getMembersAll(
     const membersInfo = await service.getMembersAll();
 
     res.status(200).json(membersInfo);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function createTheme(
+  req: Request<MemberParam, unknown, MemberThemeRequest>,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const memberTheme = await service.createTheme(req.params.id, req.body);
+
+    res.status(201).json(memberTheme);
   } catch (error) {
     next(error);
   }
