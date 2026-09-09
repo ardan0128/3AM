@@ -1,3 +1,4 @@
+import { ImageOff } from 'lucide-react';
 import type { MemberProps } from '../types';
 
 export default function CardFront({ member }: { member: MemberProps }) {
@@ -13,11 +14,15 @@ export default function CardFront({ member }: { member: MemberProps }) {
           className="shrink-0"
           style={{ backgroundColor: `${member.mainColor}` }}
         >
-          <img
-            className="block aspect-square w-full object-cover"
-            src={member.profileImageUrl || '/images/profiles/molala.webp'}
-            alt="TEST"
-          />
+          {member.profileImageUrl ? (
+            <img
+              className="block aspect-square w-full object-cover"
+              src={member.profileImageUrl}
+              alt="TEST"
+            />
+          ) : (
+            <ImageOff className="block aspect-square h-full w-full object-cover" />
+          )}
         </div>
         <div className="flex min-h-0 flex-1 flex-col p-4">
           <div className="flex flex-1 items-center">
