@@ -44,6 +44,19 @@ export interface TeamParam {
 
 export interface MemberThemeRequest {
   mainColor: string;
+  shade1: string;
+  shade2: string;
+  shade3: string;
+  shade4: string;
 }
 
 export interface MemberTheme extends MemberParam, MemberThemeRequest {}
+
+export interface MemberTheme {
+  id: string;
+  mainColor: string;
+  shade1: string;
+  shade2: string;
+  shade3: string;
+  shade4: string;
+}
