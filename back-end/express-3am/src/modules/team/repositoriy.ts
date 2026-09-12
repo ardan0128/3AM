@@ -23,16 +23,3 @@ export async function getTeamById(id: string) {
 
   return teamInfo;
 }
-
-export async function getTeamMembersById(id: string) {
-  const teamInfo = await db.query.team.findMany({
-    where: {
-      id,
-    },
-    with: {
-      member: true,
-    },
-  });
-
-  return teamInfo;
-}

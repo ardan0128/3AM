@@ -1,4 +1,5 @@
 export interface Member {
+  id: string;
   name: string;
   teamId?: string;
   mainColor?: string;
@@ -60,3 +61,5 @@ export interface MemberTheme {
   shade3: string;
   shade4: string;
 }
+
+export interface MemberAndThemeResponse {}
