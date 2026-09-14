@@ -1,19 +1,20 @@
-import { ExternalLink, ImageOff } from 'lucide-react';
+import { ImageOff } from 'lucide-react';
 import type { MemberProps } from '../types';
+import CardButton from './CardButton';
 
 export default function CardFront({ member }: { member: MemberProps }) {
   return (
     <>
       <div
         className="flex h-full flex-col overflow-hidden rounded-xl border-2 text-white"
-        style={{ borderColor: `${member.mainColor}` }}
+        style={{ borderColor: `${member.theme.mainColor}` }}
         key={member.id}
       >
         <div className="p-2 text-center text-2xl font-bold">{member.name}</div>
 
         <div
           className="shrink-0"
-          style={{ backgroundColor: `${member.mainColor}` }}
+          style={{ backgroundColor: `${member.theme.shade4}` }}
         >
           {member.profileImageUrl ? (
             <img
@@ -26,71 +27,41 @@ export default function CardFront({ member }: { member: MemberProps }) {
           )}
         </div>
 
-        <div className="flex min-h-0 flex-1 flex-col">
-          <div
-            className="relative flex flex-1 items-center justify-between px-2"
-            style={{
-              backgroundImage: `linear-gradient(to right top, #ABA089, #7F755F)`,
-            }}
-          >
-            <span>calendar</span>
-            <ExternalLink />
-            <a
-              href={member.chzzkId}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute inset-0"
-            />
-          </div>
+        <CardButton
+          buttonProps={{
+            buttonName: 'calendar',
+            buttonLink: `${member.chzzkId}`,
+            mainColor: member.theme.mainColor,
+            shade1: member.theme.shade1,
+          }}
+        />
 
-          <div
-            className="relative flex flex-1 items-center justify-between px-2"
-            style={{
-              backgroundImage: `linear-gradient(to right top, #ABA089, #7F755F)`,
-            }}
-          >
-            <span>chzzk</span>
-            <ExternalLink />
-            <a
-              href={`${import.meta.env.VITE_CHZZK_URL}${member.chzzkId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute inset-0"
-            />
-          </div>
+        <CardButton
+          buttonProps={{
+            buttonName: 'chzzk',
+            buttonLink: `${import.meta.env.VITE_CHZZK_URL}${member.chzzkId}`,
+            mainColor: member.theme.mainColor,
+            shade1: member.theme.shade1,
+          }}
+        />
 
-          <div
-            className="relative flex flex-1 items-center justify-between px-2"
-            style={{
-              backgroundImage: `linear-gradient(to right top, #ABA089, #7F755F)`,
-            }}
-          >
-            <span>cafe</span>
-            <ExternalLink />
-            <a
-              href={`${import.meta.env.VITE_CAFE_URL}${member.naverCafe}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute inset-0"
-            />
-          </div>
+        <CardButton
+          buttonProps={{
+            buttonName: 'cafe',
+            buttonLink: `${import.meta.env.VITE_CAFE_URL}${member.naverCafe}`,
+            mainColor: member.theme.mainColor,
+            shade1: member.theme.shade1,
+          }}
+        />
 
-          <div
-            className="relative flex flex-1 items-center justify-between px-2"
-            style={{
-              backgroundImage: `linear-gradient(to right top, #ABA089, #7F755F)`,
-            }}
-          >
-            <span>youtube</span>
-            <ExternalLink />
-            <a
-              href={`${import.meta.env.VITE_YOUTUBE_URL}${member.youtubeHandle}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute inset-0"
-            />
-          </div>
-        </div>
+        <CardButton
+          buttonProps={{
+            buttonName: 'youtube',
+            buttonLink: `${import.meta.env.VITE_YOUTUBE_URL}${member.youtubeHandle}`,
+            mainColor: member.theme.mainColor,
+            shade1: member.theme.shade1,
+          }}
+        />
       </div>
     </>
   );

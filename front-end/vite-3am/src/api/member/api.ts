@@ -1,8 +1,10 @@
 import axios from 'axios';
-import type { MemberResponse } from './types';
+import type { MemberWithThemeResponse } from './types';
 
-export default async function getMembersAll(): Promise<MemberResponse[]> {
-  const res = await axios.get<MemberResponse[]>(
+export default async function getMembersAll(): Promise<
+  MemberWithThemeResponse[]
+> {
+  const res = await axios.get<MemberWithThemeResponse[]>(
     `${import.meta.env.VITE_API_URL}/members`
   );
 
