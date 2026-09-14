@@ -2,23 +2,27 @@ import { asc, DrizzleQueryError, eq, inArray } from 'drizzle-orm';
 import { db } from '../../db/index.ts';
 import { member } from '../../db/schema/member.ts';
 import { memberTheme } from '../../db/schema/member-theme.ts';
-import type { Member, MemberTheme, UpdateMemberRequest } from './type.ts';
+import type { Member, MemberTheme } from './type.ts';
 import { DatabaseError } from 'pg';
+import type {
+  CreateMemberRequest,
+  UpdateMemberRequest,
+} from './request.type.ts';
 
-export async function createOne(memberOne: Member) {
+export async function createOne(memberOne: CreateMemberRequest) {
   const newMember = await db.insert(member).values(memberOne).returning();
 
   return newMember[0];
 }
 
-export async function createAll(members: Member[]) {
+export async function createAll(members: CreateMemberRequest[]) {
   const newMember = await db.insert(member).values(members).returning();
 
   return newMember;
 }
 
 export async function updateOne(updateMemberRequest: UpdateMemberRequest) {
-  const { id, teamId, ...updateData } = updateMemberRequest;
+  const { id, ...updateData } = updateMemberRequest;
   const updatedMember = await db
     .update(member)
     .set(updateData)
@@ -28,18 +32,7 @@ export async function updateOne(updateMemberRequest: UpdateMemberRequest) {
   return updatedMember[0];
 }
 
-export async function getMembersByTeamId(teamId: string) {
-  const membersInfo = await db
-    .select()
-    .from(member)
-    .where(eq(member.teamId, teamId))
-    .orderBy(asc(member.name));
-
-  return membersInfo;
-}
-
 export async function getMembersAll() {
-  // const membersInfo = await db.select().from(member).orderBy(asc(member.name));
   const membersInfo = await db.query.member.findMany({
     with: { theme: true },
     orderBy: (member) => asc(member.name),

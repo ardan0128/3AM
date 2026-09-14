@@ -1,20 +1,20 @@
+import type { MemberTheme } from './type.ts';
+import * as repository from './repository.ts';
 import type {
-  CreateMember,
-  CreateMembers,
-  MemberTheme,
-  MemberThemeRequest,
+  CreateMemberRequest,
+  CreateMembersRequest,
+  CreateThemeRequest,
   UpdateMemberRequest,
   UpdateMembersRequest,
-} from './type.ts';
-import * as repository from './repository.ts';
+} from './request.type.ts';
 
-export async function createOne(createMember: CreateMember) {
-  const newMember = await repository.createOne(createMember.member);
+export async function createOne(createMember: CreateMemberRequest) {
+  const newMember = await repository.createOne(createMember);
 
   return newMember;
 }
 
-export async function createAll(createMembers: CreateMembers) {
+export async function createAll(createMembers: CreateMembersRequest) {
   const newMember = await repository.createAll(createMembers.members);
 
   return newMember;
@@ -28,12 +28,6 @@ export async function updateOne(
   const member = await repository.updateOne(updateMember);
 
   return member;
-}
-
-export async function getMembersByTeamId(teamId: string) {
-  const membersInfo = await repository.getMembersByTeamId(teamId);
-
-  return membersInfo;
 }
 
 export async function updateAll(updateMembersRequest: UpdateMembersRequest) {
@@ -54,10 +48,9 @@ export async function getMembersAll() {
 
 export async function createTheme(
   id: string,
-  memberThemeRequest: MemberThemeRequest,
+  createThemeRequest: CreateThemeRequest,
 ) {
-  const memberTheme: MemberTheme = { ...memberThemeRequest, id };
-
+  const memberTheme: MemberTheme = { ...createThemeRequest, id };
   const themeInfo = await repository.createTheme(memberTheme);
 
   return themeInfo;

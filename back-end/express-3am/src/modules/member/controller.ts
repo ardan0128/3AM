@@ -1,14 +1,15 @@
 import { type NextFunction, type Request, type Response } from 'express';
 import * as service from './service.ts';
+import type { MemberParam } from './type.ts';
 import type {
-  MemberParam,
-  MemberThemeRequest,
-  TeamParam,
+  CreateMemberRequest,
+  CreateMembersRequest,
+  CreateThemeRequest,
   UpdateMemberRequest,
-} from './type.ts';
+} from './request.type.ts';
 
 export async function createOne(
-  req: Request,
+  req: Request<CreateMemberRequest>,
   res: Response,
   next: NextFunction,
 ) {
@@ -22,7 +23,7 @@ export async function createOne(
 }
 
 export async function createAll(
-  req: Request,
+  req: Request<CreateMembersRequest>,
   res: Response,
   next: NextFunction,
 ) {
@@ -63,20 +64,6 @@ export async function updateAll(
   }
 }
 
-export async function getMembersByTeamId(
-  req: Request<TeamParam>,
-  res: Response,
-  next: NextFunction,
-) {
-  try {
-    const membersInfo = await service.getMembersByTeamId(req.params.teamId);
-
-    res.status(200).json(membersInfo);
-  } catch (error) {
-    next(error);
-  }
-}
-
 export async function getMembersAll(
   req: Request,
   res: Response,
@@ -92,7 +79,7 @@ export async function getMembersAll(
 }
 
 export async function createTheme(
-  req: Request<MemberParam, unknown, MemberThemeRequest>,
+  req: Request<MemberParam, unknown, CreateThemeRequest>,
   res: Response,
   next: NextFunction,
 ) {
