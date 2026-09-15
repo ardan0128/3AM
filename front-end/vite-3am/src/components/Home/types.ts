@@ -21,6 +21,7 @@ export interface Theme {
 export interface CardButtonProps {
   buttonName: string;
   buttonLink: string;
+  target: string;
   mainColor: string;
   subColor?: string;
   shade1?: string;

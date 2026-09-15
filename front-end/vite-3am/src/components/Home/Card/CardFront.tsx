@@ -30,7 +30,8 @@ export default function CardFront({ member }: { member: MemberProps }) {
         <CardButton
           buttonProps={{
             buttonName: 'calendar',
-            buttonLink: `${member.chzzkId}`,
+            buttonLink: `calendar/${member.chzzkId}`,
+            target: '_self',
             mainColor: member.theme.mainColor,
             shade1: member.theme.shade1,
           }}
@@ -40,6 +41,7 @@ export default function CardFront({ member }: { member: MemberProps }) {
           buttonProps={{
             buttonName: 'chzzk',
             buttonLink: `${import.meta.env.VITE_CHZZK_URL}${member.chzzkId}`,
+            target: '_blank',
             mainColor: member.theme.mainColor,
             shade1: member.theme.shade1,
           }}
@@ -49,6 +51,7 @@ export default function CardFront({ member }: { member: MemberProps }) {
           buttonProps={{
             buttonName: 'cafe',
             buttonLink: `${import.meta.env.VITE_CAFE_URL}${member.naverCafe}`,
+            target: '_blank',
             mainColor: member.theme.mainColor,
             shade1: member.theme.shade1,
           }}
@@ -58,6 +61,7 @@ export default function CardFront({ member }: { member: MemberProps }) {
           buttonProps={{
             buttonName: 'youtube',
             buttonLink: `${import.meta.env.VITE_YOUTUBE_URL}${member.youtubeHandle}`,
+            target: '_blank',
             mainColor: member.theme.mainColor,
             shade1: member.theme.shade1,
           }}

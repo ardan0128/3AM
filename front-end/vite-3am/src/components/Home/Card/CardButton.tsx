@@ -17,7 +17,7 @@ export default function CardButton({
       <ExternalLink />
       <a
         href={`${buttonProps.buttonLink}`}
-        target="_blank"
+        target={`${buttonProps.target}`}
         rel="noopener noreferrer"
         className="absolute inset-0"
       />

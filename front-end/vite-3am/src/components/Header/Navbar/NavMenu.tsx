@@ -3,6 +3,7 @@ import NavItem from './NavItem';
 const items = [
   { label: 'Team', path: '/team' },
   { label: 'Member', path: '/member' },
+  { label: 'Calendar', path: '/calendar' },
 ];
 
 export default function NavMenu() {
