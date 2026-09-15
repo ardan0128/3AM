@@ -16,6 +16,7 @@ export interface Theme {
   shade2?: string;
   shade3?: string;
   shade4?: string;
+  cardBackColor?: string;
 }
 
 export interface CardButtonProps {
