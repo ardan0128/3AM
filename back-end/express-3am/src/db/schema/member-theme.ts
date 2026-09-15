@@ -12,6 +12,7 @@ export const memberTheme = pgTable('member_themes', {
   shade2: varchar('shade2', { length: 7 }),
   shade3: varchar('shade3', { length: 7 }),
   shade4: varchar('shade4', { length: 7 }),
+  cardBackColor: varchar('card_back_color', { length: 7 }),
 
   createdAt: timestamp('created_at', { withTimezone: true })
     .defaultNow()
